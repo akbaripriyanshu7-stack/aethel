@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 export default function Home() {
-  const [selectedImage, setSelectedImage] = useState("/images/front.png");
+  const [selectedImage, setSelectedImage] = useState("/images/back.png");
   const [selectedSize, setSelectedSize] = useState("M");
 
   return (
@@ -69,13 +69,17 @@ export default function Home() {
   height={600}
   className="rounded-lg w-full h-auto object-cover"
 />
-<div className="grid grid-cols-2 gap-4 mt-6">
-  <Image
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+ <Image
   src="/images/back.png"
   alt="Back"
   width={250}
   height={300}
-  className="rounded-lg w-full cursor-pointer hover:opacity-80"
+  className={`rounded-lg w-full cursor-pointer hover:opacity-80 border-4 ${
+  selectedImage === "/images/back.png"
+    ? "border-red-500"
+    : "border-transparent"
+}`}
   onClick={() => setSelectedImage("/images/back.png")}
 />
 
@@ -84,7 +88,11 @@ export default function Home() {
   alt="Closeup"
   width={250}
   height={300}
-  className="rounded-lg w-full cursor-pointer hover:opacity-80"
+ className={`rounded-lg w-full cursor-pointer hover:opacity-80 border-4 ${
+  selectedImage === "/images/closeup.png"
+    ? "border-red-500"
+    : "border-transparent"
+}`}
   onClick={() => setSelectedImage("/images/closeup.png")}
 />
 
@@ -93,7 +101,11 @@ export default function Home() {
   alt="All Over"
   width={250}
   height={300}
-  className="rounded-lg w-full col-span-2 cursor-pointer hover:opacity-80"
+  className={`rounded-lg w-full col-span-2 cursor-pointer hover:opacity-80 border-4 ${
+  selectedImage === "/images/allover.png"
+    ? "border-red-500"
+    : "border-transparent"
+}`}
   onClick={() => setSelectedImage("/images/allover.png")}
 />
 </div>
@@ -136,7 +148,16 @@ export default function Home() {
 >
   L
 </button>
-  <button className="border border-white px-4 py-2 rounded">XL</button>
+  <button
+  onClick={() => setSelectedSize("XL")}
+  className={`px-4 py-2 rounded border ${
+    selectedSize === "XL"
+      ? "bg-white text-black"
+      : "border-white text-white"
+  }`}
+>
+  XL
+</button>
 </div>
 
 <p className="mt-4">
@@ -144,9 +165,18 @@ export default function Home() {
 </p>
 
 <a
-  href={`https://wa.me/918238075225?text=Hi%20I%20want%20to%20order%20the%20AETHEL%20Oversized%20Tee%20in%20size%20${selectedSize}`}
+  href={`https://wa.me/918238075225?text=${encodeURIComponent(
+    `Hi AETHEL,
+
+I want to order the AETHEL Oversized Tee.
+
+Size: ${selectedSize}
+
+Please share the payment details.`
+  )}`}
   target="_blank"
-  className="block mt-6 w-full bg-white text-black py-3 rounded-lg font-semibold text-center hover:bg-gray-200"
+  rel="noopener noreferrer"
+  className="block mt-6 w-full bg-white text-black py-3 rounded-xl font-semibold text-center transition-all duration-300 hover:bg-gray-200 hover:scale-105"
 >
   SHOP NOW
 </a>
