@@ -1,10 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import AOS from "aos";
 import Image from "next/image";
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState("/images/back.png");
   const [selectedSize, setSelectedSize] = useState("M");
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+  AOS.init({
+    duration: 800,
+    once: true,
+    easing: "ease-in-out",
+  });
+}, []);
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -14,7 +24,7 @@ export default function Home() {
       AETHEL
     </h1>
 
-    <div className="flex gap-6 text-sm">
+    <div className="hidden md:flex gap-6 text-sm">
       <a href="#home" className="hover:text-gray-400">
         Home
       </a>
@@ -56,7 +66,11 @@ export default function Home() {
 </a>
       </section>
 
-      <section id="products" className="py-20 px-6 bg-zinc-950">
+      <section
+  id="products"
+  className="py-20 px-6 bg-zinc-950"
+  data-aos="fade-up"
+>
         <h2 className="text-4xl font-bold text-center mb-10">
           Featured Product
         </h2>
@@ -182,6 +196,161 @@ Please share the payment details.`
 </a>
         </div>
       </section>
+      <section
+  className="py-20 px-6 bg-black"
+  data-aos="fade-up"
+>
+  <h2 className="text-4xl font-bold text-center mb-10">
+    Size Chart
+  </h2>
+
+  <div className="max-w-3xl mx-auto overflow-x-auto">
+    <table className="w-full border border-gray-700 text-center">
+      <thead>
+        <tr className="bg-zinc-900">
+          <th className="border border-gray-700 p-4">Size</th>
+          <th className="border border-gray-700 p-4">Chest</th>
+          <th className="border border-gray-700 p-4">Length</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td className="border border-gray-700 p-4">S</td>
+          <td className="border border-gray-700 p-4">40"</td>
+          <td className="border border-gray-700 p-4">27"</td>
+        </tr>
+
+        <tr>
+          <td className="border border-gray-700 p-4">M</td>
+          <td className="border border-gray-700 p-4">42"</td>
+          <td className="border border-gray-700 p-4">28"</td>
+        </tr>
+
+        <tr>
+          <td className="border border-gray-700 p-4">L</td>
+          <td className="border border-gray-700 p-4">44"</td>
+          <td className="border border-gray-700 p-4">29"</td>
+        </tr>
+
+        <tr>
+          <td className="border border-gray-700 p-4">XL</td>
+          <td className="border border-gray-700 p-4">46"</td>
+          <td className="border border-gray-700 p-4">30"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section
+  className="py-20 px-6 bg-zinc-950"
+  data-aos="fade-up"
+>
+  <h2 className="text-4xl font-bold text-center mb-10">
+    Product Details
+  </h2>
+
+  <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold mb-2">👕 Fabric</h3>
+      <p className="text-gray-400">
+        100% Premium Cotton with a soft and comfortable feel.
+      </p>
+    </div>
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold mb-2">🧵 GSM</h3>
+      <p className="text-gray-400">
+        240 GSM heavyweight fabric for a premium look.
+      </p>
+    </div>
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold mb-2">😎 Fit</h3>
+      <p className="text-gray-400">
+        Oversized fit for everyday comfort and streetwear style.
+      </p>
+    </div>
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold mb-2">🎨 Print</h3>
+      <p className="text-gray-400">
+        Premium Puff Print with long-lasting quality.
+      </p>
+    </div>
+
+  </div>
+</section>
+<section
+  className="py-20 px-6 bg-black"
+  data-aos="fade-up"
+>
+  <h2 className="text-4xl font-bold text-center mb-10">
+    Shipping & Exchange
+  </h2>
+
+  <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+      <h3 className="text-2xl font-semibold mb-3">🚚 Shipping</h3>
+      <ul className="text-gray-400 space-y-2">
+        <li>• PAN India Delivery</li>
+        <li>• Dispatch within 1–2 Days</li>
+        <li>• Delivery in 3–7 Business Days</li>
+      </ul>
+    </div>
+
+    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+      <h3 className="text-2xl font-semibold mb-3">🔄 Exchange</h3>
+      <ul className="text-gray-400 space-y-2">
+        <li>• 7-Day Size Exchange</li>
+        <li>• Product must be unused</li>
+        <li>• Original tags should be attached</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<section
+  className="py-20 px-6 bg-zinc-950"
+  data-aos="fade-up"
+>
+  <h2 className="text-4xl font-bold text-center mb-10">
+    Frequently Asked Questions
+  </h2>
+
+  <div className="max-w-4xl mx-auto space-y-6">
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold">
+        What is the delivery time?
+      </h3>
+      <p className="text-gray-400 mt-2">
+        Orders are usually delivered within 3–7 business days across India.
+      </p>
+    </div>
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold">
+        Can I exchange my size?
+      </h3>
+      <p className="text-gray-400 mt-2">
+        Yes, we offer a 7-day size exchange for unused products with original tags.
+      </p>
+    </div>
+
+    <div className="border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <h3 className="text-xl font-semibold">
+        What fabric is used?
+      </h3>
+      <p className="text-gray-400 mt-2">
+        Our oversized tees are made from premium heavyweight cotton for comfort and durability.
+      </p>
+    </div>
+
+  </div>
+</section>
       <footer className="border-t border-gray-800 py-8 text-center text-gray-400">
   <h3 className="text-xl font-bold tracking-[0.3em] text-white">
     AETHEL
@@ -198,10 +367,42 @@ Please share the payment details.`
   <a
     href="https://wa.me/918238075225"
     target="_blank"
+    rel="noopener noreferrer"
     className="inline-block mt-4 text-white hover:text-gray-300"
   >
     Contact on WhatsApp
   </a>
+  <a
+  href="https://instagram.com/aethel.club"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block mt-3 text-white hover:text-gray-300"
+>
+  Follow us on Instagram
+</a>
+<section
+  className="py-20 px-6 bg-black"
+  data-aos="fade-up"
+>
+  <h2 className="text-4xl font-bold text-center mb-10">
+    About AETHEL
+  </h2>
+
+  <div className="max-w-3xl mx-auto text-center">
+    <p className="text-gray-400 text-lg leading-8">
+      AETHEL is a premium streetwear brand built for those who value
+      minimal design, modern aesthetics, and timeless quality.
+      Every piece is crafted to deliver comfort, confidence, and
+      everyday versatility.
+    </p>
+
+    <p className="text-gray-400 text-lg leading-8 mt-6">
+      We believe that fashion is more than clothing—it's a way to
+      express your identity. Our goal is to create premium essentials
+      that never go out of style.
+    </p>
+  </div>
+</section>
 </footer>
     </main>
   );
